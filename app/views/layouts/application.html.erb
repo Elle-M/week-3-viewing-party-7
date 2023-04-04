@@ -15,6 +15,14 @@
       <%= link_to "Home", root_path %> <%= link_to "Log In", "/login"%>
     </nav>
 
+    <% if @current_user %>
+      <p>You are logged in as <%= @current_user.email %>.</p>
+      <%= link_to "Log out", logout_path, method: :delete %>
+    <% else %>
+      <p>You are not logged in.</p>
+      <%= link_to "Log in", login_path %>
+    <% end %>
+
     <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, class: name %>
     <% end %>
