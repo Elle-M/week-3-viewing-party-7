@@ -1,0 +1,9 @@
+<h3>Movie.title</h3>
+
+<section class="create_viewing-party">
+  <% if current_user %>
+    <%= link_to "Create Viewing Party", dashboard_path , method: :get%> 
+  <% else %>
+    <%= link_to "Log In", login_path %>
+  <% end %> 
+</section> 

@@ -38,13 +38,16 @@ RSpec.describe 'Landing Page' do
     expect(page).to_not have_content('Existing Users:')
   end
 
-  xit "shows a section that lists existing users to logged in users" do 
+  it "shows a section that lists existing users to logged in users" do 
     user1 = User.create(name: "User One", email: "user1@test.com", password: "password123")
     user2 = User.create(name: "User Two", email: "user2@test.com", password: "password123")
-
-    expect(page).to have_content('Existing Users:')
-    expect(page).to have_content(user1.email)
-    expect(page).to have_content(user2.email)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
+# save_and_open_page
+    within(".existing-users") do
+      expect(page).to have_content("Existing Users:")
+      expect(page).to have_content(user1.email)
+      expect(page).to have_content(user2.email)
+    end  
   end
 
   it "does not let a visitor visit the dashboard" do 

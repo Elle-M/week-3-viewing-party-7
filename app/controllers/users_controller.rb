@@ -4,7 +4,12 @@ class UsersController <ApplicationController
   end 
 
   def show 
-    @user = User.find(params[:id])
+    if !current_user
+      flash[:notice] = "You must be logged in to view this page."
+      redirect_to root_path
+    else 
+      @user = User.find(params[:id])
+    end
   end 
 
   def create 
@@ -38,7 +43,7 @@ class UsersController <ApplicationController
   def logout_user
     session.delete(:user_id)
     flash[:notice] = "You are not logged in."
-    redirect_to root_path
+    render :login_form
   end
 
   private 

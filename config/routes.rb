@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   get '/users/:user_id/movies/:movie_id/viewing_parties/new', to: 'viewing_parties#new'
   post '/users/:user_id/movies/:movie_id/viewing_parties', to: 'viewing_parties#create'
 
-  namespace :user do
-    get '/dashboard', to: 'dashboard#index', as: 'dashboard'
-  end  
+  get '/users', to: 'users#show', as: 'dashboard'
+  get '/visitor/movies/:id', to: 'movies#show', as: 'visitor_movie'
 end
