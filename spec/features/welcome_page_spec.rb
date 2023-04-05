@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Landing Page' do
+RSpec.describe 'Welcome Page' do
   before :each do 
     user1 = User.create(name: "User One", email: "user1@test.com", password: "password123")
     user2 = User.create(name: "User Two", email: "user2@test.com", password: "password123")

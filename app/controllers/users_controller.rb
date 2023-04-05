@@ -43,7 +43,7 @@ class UsersController <ApplicationController
   def logout_user
     session.delete(:user_id)
     flash[:notice] = "You are not logged in."
-    render :login_form
+    redirect_to root_path
   end
 
   private 

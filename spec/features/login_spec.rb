@@ -47,7 +47,7 @@ RSpec.describe "User Log In" do
     # save_and_open_page
     click_link "Log Out"
 
-    expect(current_path).to eq("/")
+    expect(current_path).to eq("/logout")
     expect(page).to have_content("You are not logged in.")
     expect(page).to have_link("Log In")
   end  
