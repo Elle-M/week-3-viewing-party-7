@@ -11,4 +11,8 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy', as: 'logout'
   get '/users/:user_id/movies/:movie_id/viewing_parties/new', to: 'viewing_parties#new'
   post '/users/:user_id/movies/:movie_id/viewing_parties', to: 'viewing_parties#create'
+
+  namespace :user do
+    get '/dashboard', to: 'dashboard#index', as: 'dashboard'
+  end  
 end

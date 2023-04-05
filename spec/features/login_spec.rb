@@ -44,7 +44,7 @@ RSpec.describe "User Log In" do
     click_button "Log In"
 
     expect(current_path).to eq("/users/#{user.id}")
-    save_and_open_page
+    # save_and_open_page
     click_link "Log Out"
 
     expect(current_path).to eq("/")

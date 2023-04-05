@@ -22,7 +22,7 @@ RSpec.describe 'Landing Page' do
     expect(current_path).to eq(root_path)
   end 
 
-  it 'lists out existing users' do 
+  xit 'lists out existing users' do 
     user1 = User.create(name: "User One", email: "user1@test.com", password: "password123")
     user2 = User.create(name: "User Two", email: "user2@test.com", password: "password123")
 
@@ -33,4 +33,24 @@ RSpec.describe 'Landing Page' do
       expect(page).to have_content(user2.email)
     end     
   end 
+
+  it "does not show a section that lists existing users to visitors" do 
+    expect(page).to_not have_content('Existing Users:')
+  end
+
+  xit "shows a section that lists existing users to logged in users" do 
+    user1 = User.create(name: "User One", email: "user1@test.com", password: "password123")
+    user2 = User.create(name: "User Two", email: "user2@test.com", password: "password123")
+
+    expect(page).to have_content('Existing Users:')
+    expect(page).to have_content(user1.email)
+    expect(page).to have_content(user2.email)
+  end
+
+  it "does not let a visitor visit the dashboard" do 
+    click_link "Dashboard"
+
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content("You must be logged in to view this page")
+  end
 end
