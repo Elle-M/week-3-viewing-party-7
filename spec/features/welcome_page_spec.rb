@@ -39,7 +39,7 @@ RSpec.describe 'Welcome Page' do
   end
 
   it "shows a section that lists existing users to logged in users" do 
-    user1 = User.create(name: "User One", email: "user1@test.com", password: "password123")
+    user1 = User.create(name: "User One", email: "user1@test.com", password: "password123", role: 1)
     user2 = User.create(name: "User Two", email: "user2@test.com", password: "password123")
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 # save_and_open_page

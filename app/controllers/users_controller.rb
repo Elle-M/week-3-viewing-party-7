@@ -33,7 +33,9 @@ class UsersController <ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:success] = "Welcome, #{user.name}"
+      if user.user?
       redirect_to "/users/#{user.id}"
+      end
     else 
       flash[:error] = "Bad Credentials, try again."
       redirect_to "/login" 
